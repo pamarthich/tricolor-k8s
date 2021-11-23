@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: api-sys
+    labels:
+        app: api-sys
+spec:
+   replicas: 1
+   selector:
+       matchLabels:
+            app: api-sys
+   template:
+       metadata:
+           labels:
+              app: api-sys
+       spec:
+         containers:
+            - name: api-sys
+              image: api-sys:latest
+              imagePullPolicy: Never
+              ports:
+                - name: http
+                  containerPort: 9000
+                  protocol: TCP
+              envFrom:
+              - configMapRef:
+                     name: api-configmap

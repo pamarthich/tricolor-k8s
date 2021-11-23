@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: api-dms
+    labels:
+        app: api-dms
+spec:
+   replicas: 1
+   selector:
+       matchLabels:
+            app: api-dms
+   template:
+       metadata:
+           labels:
+              app: api-dms
+       spec:
+         containers:
+            - name: api-dms
+              image: api-dms:v1
+              imagePullPolicy: Never
+              ports:
+                - name: http
+                  containerPort: 9000
+                  protocol: TCP
+              envFrom:
+              - configMapRef:
+                     name: api-configmap

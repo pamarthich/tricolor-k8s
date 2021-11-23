@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: api-org
+    labels:
+        app: api-org
+spec:
+   replicas: 1
+   selector:
+       matchLabels: 
+            app: api-org
+   template:
+       metadata:
+           labels:
+              app: api-org
+       spec:
+         containers:
+            - name: api-org
+              image: api-org:v1
+              imagePullPolicy: Never
+              ports: 
+                - name: http
+                  containerPort: 9000
+                  protocol: TCP
+              envFrom:
+              - configMapRef:
+                     name: api-configmap
+                     #volumes:
+                     #- name: app-configmap
+                     #configMap:
+                     #name: app-configmap
+

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: api-uma
+    labels:
+        app: api-uma
+spec:
+   replicas: 1
+   selector:
+       matchLabels:
+            app: api-uma
+   template:
+       metadata:
+           labels:
+              app: api-uma
+       spec:
+         containers:
+            - name: api-uma
+              image: api-uma:latest
+              imagePullPolicy: Never
+              ports:
+                - name: http
+                  containerPort: 9000
+                  protocol: TCP
+              envFrom:
+              - configMapRef:
+                     name: api-configmap

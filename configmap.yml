@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: 
+    name: api-configmap
+data:
+  # microservice level params
+  ms.log.level: debug
+  #ms.proxy.http:
+          #ms.proxy.no: 
+  ms.otp.size: "4"
+  ms.otp.expiry: "60"
+  # NoSQL Database Parameters
+  db.mongo.url: mongodb+srv://poadmin:kIrNg7fIehbQ4YWD@projectonedev.ct2f4.mongodb.net
+  db.mongo.databaseName: projectone
+  db.mongo.useSSL: "true"
+  db.mongo.connectionTimeOutMillis: "30000"
+  db.mongo.socketTimeOutMillis: "30000"
+  db.mongo.pingTimeOutMillis: "30000"
+  db.mongo.serverSelectionTimeout: "10000"
+  db.mongo.maxPoolSize: "3"
+
+  # RDBMS Database Parameters
+  db.sql.driver: postgres
+  #db.sql.dataSource : enersys:enersys@(localhost:3306)/projectone
+  #db.sql.dataSource: host=localhost port=5433 user=cashedev_RDS password=csdev#12!75$ dbname=cashe2-dev sslmode=disable
+  db.sql.maxOpenConnections: "20"
+  db.sql.maxIdleConnections: "5"
+  db.sql.maxConnectionLifeTime: "30000"
+  db.sql.dataSource: host=pgsql-dev-demo-do-user-9701560-0.b.db.ondigitalocean.com port=25060 user=teachingmonks_dev password=xl2xNguoC24-A0Va dbname=teachingmonks_dev
+  jwt.client: ProjectOne
+  jwt.secret_key: RlB5KqaNcaJD8ELCxF9fXXJQ7xCXUWusI7k9TSiwTk9908W1mXr8xPLI1J9KCWyc
+  jwt.aud: http://localhost:9091
+  jwt.iss: http://localhost:9091
+  jwt.exp: "10000"
+  # storage drive details
+  storage.drive.folder: /tmp
+
+  sms.url: https://2factor.in/API/V1
+  sms.api_key: 83fa02fb-0343-11ec-a13b-0200cd936042
+  sms.otp_template: IDA OTP

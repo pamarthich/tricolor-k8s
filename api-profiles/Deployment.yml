@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: api-profiles
+    labels:
+        app: api-profiles
+spec:
+   replicas: 1
+   selector:
+       matchLabels:
+            app: api-profiles
+   template:
+       metadata:
+           labels:
+              app: api-profiles
+       spec:
+         containers:
+            - name: api-profiles
+              image: api-profiles:v1
+              imagePullPolicy: Never
+              ports:
+                - name: http
+                  containerPort: 9000
+                  protocol: TCP
+              envFrom:
+              - configMapRef:
+                     name: api-configmap

@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+   name: dev-ingress
+   annotations:
+     kubernetes.io/ingress.class: "nginx"
+spec:
+        #tls:
+           #- hosts:
+           #- 157.245.107.84
+   rules:
+     - host: 157.245.107.84 
+       http:
+         paths:
+         - backend: 
+              serviceName: api-org
+              servicePort: 9000
+           path: 157.245.107.84/api/org
+         - backend: 
+              serviceName: api-sys
+              servicePort: 9000
+           path: 157.245.107.84/api/sys
+         - backend: 
+              serviceName: api-uma
+              servicePort: 9000
+           path: 157.245.107.84/api/uma
+         - backend: 
+              serviceName: ui
+              servicePort: 80
+           path: /
